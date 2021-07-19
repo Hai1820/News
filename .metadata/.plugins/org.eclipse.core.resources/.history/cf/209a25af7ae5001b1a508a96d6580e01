@@ -1,0 +1,12 @@
+package com.myclass.service;
+
+import java.util.List;
+
+import com.myclass.dto.NewsDto;
+import com.myclass.entity.NewEntity;
+import com.myclass.repository.NewsRepository;
+
+public class NewsServices {
+	
+	
+}

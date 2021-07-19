@@ -1,0 +1,13 @@
+package com.myclass.service.impl;
+
+import com.myclass.repository.NewsRepository;
+import com.myclass.repository.impl.NewRepositoryImpl;
+
+public class NewsServiceImpl {
+	private NewsRepository newsRepository = null;
+
+	public NewsServiceImpl() {
+		newsRepository = new NewRepositoryImpl();
+	}
+
+}

@@ -1,0 +1,25 @@
+package com.myclass.service;
+
+import java.util.List;
+
+import com.myclass.dto.NewsDto;
+import com.myclass.entity.NewEntity;
+import com.myclass.repository.NewsRepository;
+
+public interface NewsServices {
+
+	List<NewsDto> findAllByJoin();
+
+	NewEntity save(NewEntity entity);
+
+	NewEntity update(NewEntity entity);
+
+	void delete(long[] id);
+
+	List<NewEntity> findAll();
+
+	NewEntity findOne(long id);
+
+	List<NewEntity> findByCategoryId(Long categoryId);
+
+}

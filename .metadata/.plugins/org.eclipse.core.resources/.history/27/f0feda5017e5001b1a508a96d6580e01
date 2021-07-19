@@ -1,0 +1,10 @@
+package com.myclass.service;
+
+import com.myclass.repository.CategoryRepository;
+
+public class CategoryService {
+	private CategoryRepository categoryRepository = null;
+	public CategoryService() {
+		categoryRepository = new CategoryRepository();
+	}
+}

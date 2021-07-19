@@ -1,0 +1,9 @@
+127.0.0.1 - - [13/Jul/2021:08:43:09 +0700] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:10 +0700] "GET /Servlet-Basic/ HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:10 +0700] "GET /Servlet-Basic/home HTTP/1.1" 200 8460
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:10 +0700] "GET /Servlet-Basic/template/web/css/shop-homepage.css HTTP/1.1" 200 833
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:10 +0700] "GET /Servlet-Basic/template/web/css/bootstrap.min.css HTTP/1.1" 200 117305
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:10 +0700] "GET /Servlet-Basic/template/web/js/bootstrap.min.js HTTP/1.1" 200 35951
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:10 +0700] "GET /Servlet-Basic/template/web/js/jquery.js HTTP/1.1" 200 95785
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:10 +0700] "GET /Servlet-Basic/template/web/fonts/glyphicons-halflings-regular.woff2 HTTP/1.1" 200 18028
+0:0:0:0:0:0:0:1 - - [13/Jul/2021:08:43:11 +0700] "GET /favicon.ico HTTP/1.1" 404 684

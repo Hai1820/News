@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/common/tablib.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Danh sách bài viết</title>
+<!-- Custom link pagnition for this template-->
+
+</head>
+<body>
+	<!-- Begin Page Content -->
+
+	<div class="row">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">STT</th>
+						<th scope="col">Tên Bài</th>
+						<th scope="col">Mô tả ngắn</th>
+						<th scope="col">Thể loại</th>
+						<th scope="col">#</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="item" items="${model.listResult}">
+						<tr>
+							<th>${item.id}</th>
+							<td>${item.title}</td>
+							<td>${item.shortDescription}</td>
+							<td><a href="" class="btn btn-sm btn-primary">Sửa</a> <a
+								href="" class="btn btn-sm btn-danger">Xóa</a></td>
+						</tr>
+					</c:forEach>
+
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- /.container-fluid -->
+
+
+</body>
+</html>

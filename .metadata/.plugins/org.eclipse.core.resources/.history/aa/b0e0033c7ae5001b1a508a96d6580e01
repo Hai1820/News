@@ -1,0 +1,15 @@
+package com.myclass.repository;
+
+import java.util.List;
+
+import com.myclass.entity.NewEntity;
+
+public interface NewsRepository extends GenericRepository<NewEntity>  {
+	NewEntity findOne(Long id);
+	List<NewEntity> findByCategoryId(Long categoryId);
+	Long save(NewEntity newEntity);
+	void update(NewEntity updateNews);
+	void delete(long id);
+	List<NewEntity> findAll();
+	int getTotalItem();
+}

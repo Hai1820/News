@@ -1,0 +1,34 @@
+package com.myclass.mapper;
+
+import java.sql.ResultSet;
+
+import com.myclass.dto.NewsDto;
+import com.myclass.entity.NewEntity;
+
+public class NewsMapper implements RowMapper<NewEntity> {
+
+	@Override
+	public NewEntity mapRow(ResultSet result) {
+		try {
+			NewEntity newsEntity = new NewEntity();
+			newsEntity.setId(result.getLong("id"));
+			newsEntity.setTitle(result.getString("title"));
+			newsEntity.setContent(result.getString("content"));
+			newsEntity.setCategoryId(result.getLong("categoryid"));
+			newsEntity.setThumbnail(result.getString("thumbnail"));
+			newsEntity.setShortDescription(result.getString("shortdescription"));
+			newsEntity.setCreatedDate(result.getTimestamp("createddate"));
+			newsEntity.setCreatedBy(result.getString("createdby"));
+
+			if (result.getTimestamp("modifieddate") != null) {
+				newsEntity.setModifiedDate(result.getTimestamp("modifieddate"));
+			}
+			if (result.getString("modifiedby") != null) {
+				newsEntity.setModifiedBy(result.getString("modifiedby"));
+			}
+			return newsEntity;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+}

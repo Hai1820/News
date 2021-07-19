@@ -1,0 +1,53 @@
+package com.myclass.controller.web;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.myclass.service.CategoryService;
+import com.myclass.service.impl.CategoryServiceImpl;
+
+@WebServlet(urlPatterns = { "/home", "/login" })
+public class HomeServlet extends HttpServlet {
+
+	/**
+	 * @author Hoang Hai
+	 */
+	private static final long serialVersionUID = 1L;
+	private CategoryService categoryService = null;
+
+	private void doInit() {
+		// TODO Auto-generated method stub
+		categoryService = new CategoryServiceImpl();
+
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String action = req.getParameter("action");
+		if (action != null && action.equals("login")) {
+			RequestDispatcher rd = req.getRequestDispatcher("/views/login.jsp");
+			rd.forward(req, resp);
+		} else if (action != null && action.equals("logoutF")) {
+
+		} else {
+			req.setAttribute("categories", categoryService. <ul class="nav navbar-nav navbar-right">
+		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		    </ul>());
+			RequestDispatcher rd = req.getRequestDispatcher("/views/web/home.jsp");
+			rd.forward(req, resp);
+		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.doPost(req, resp);
+	}
+}

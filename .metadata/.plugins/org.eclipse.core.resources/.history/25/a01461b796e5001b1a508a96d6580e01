@@ -1,0 +1,62 @@
+package com.myclass.service.impl;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import com.myclass.dto.NewsDto;
+import com.myclass.entity.NewEntity;
+import com.myclass.repository.NewsRepository;
+import com.myclass.repository.impl.NewRepositoryImpl;
+import com.myclass.service.NewsServices;
+
+public class NewsServiceImpl implements NewsServices {
+	private NewsRepository newsRepository = null;
+
+	public NewsServiceImpl() {
+		newsRepository = new NewRepositoryImpl();
+	}
+
+	@Override
+	public List<NewsDto> findAllByJoin() {
+
+		return newsRepository.getAllByJoin();
+	}
+
+	@Override
+	public NewEntity save(NewEntity entity) {
+		entity.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+		Long newsId = newsRepository.save(entity);
+		return newsRepository.findOne(newsId);
+	}
+
+	@Override
+	public NewEntity update(NewEntity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(long[] id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<NewEntity> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public NewEntity findOne(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<NewEntity> findByCategoryId(Long categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

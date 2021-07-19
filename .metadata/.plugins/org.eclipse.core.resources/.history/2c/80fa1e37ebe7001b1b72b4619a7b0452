@@ -1,0 +1,5 @@
+package com.myclass.utils;
+
+public class SessionUtils {
+
+}

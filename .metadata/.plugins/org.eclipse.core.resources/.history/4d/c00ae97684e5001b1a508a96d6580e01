@@ -1,0 +1,31 @@
+package com.myclass.mapper;
+
+import java.sql.ResultSet;
+
+import com.myclass.entity.CategoryEntity;
+
+public class CategoryMapper implements RowMapper<CategoryEntity> {
+
+	@Override
+	public CategoryEntity mapRow(ResultSet result) {
+		try {
+			CategoryEntity categoryEntity = new CategoryEntity();
+			categoryEntity.setId(result.getLong("id"));
+			categoryEntity.setName(result.getString("name"));
+			categoryEntity.setCode(result.getString("code"));
+			categoryEntity.setCreatedDate(result.getTimestamp("createddate"));
+			categoryEntity.setCreatedBy(result.getString("createdby"));
+			if (result.getTimestamp("modifieddate") != null) {
+				categoryEntity.setModifiedDate(result.getTimestamp("modifieddate"));
+			}
+			if (result.getString("modifiedby") != null) {
+				categoryEntity.setModifiedBy(result.getString("modifiedby"));
+			}
+			return categoryEntity;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+}

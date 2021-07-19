@@ -1,0 +1,10 @@
+package com.myclass.repository;
+
+import java.util.List;
+
+public interface GenericRepository<T> {
+	public List<T> query(String sql, Object... parameters);
+	void update (String sql, Object... parameters);
+	Long insert (String sql, Object... parameters);
+	int count(String sql, Object... parameters);
+}

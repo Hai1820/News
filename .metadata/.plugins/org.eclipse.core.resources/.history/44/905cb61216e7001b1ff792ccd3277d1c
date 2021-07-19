@@ -1,0 +1,122 @@
+package com.myclass.controller.admin;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.myclass.constant.UrlConstants;
+import com.myclass.dto.NewsDto;
+import com.myclass.dto.UserDto;
+import com.myclass.entity.CategoryEntity;
+import com.myclass.entity.NewEntity;
+import com.myclass.entity.RoleEntity;
+import com.myclass.entity.UserEntity;
+import com.myclass.service.CategoryService;
+import com.myclass.service.NewsServices;
+import com.myclass.service.UserService;
+import com.myclass.service.impl.CategoryServiceImpl;
+import com.myclass.service.impl.NewsServiceImpl;
+import com.myclass.service.impl.UserServiceImpl;
+
+@WebServlet(name = "user", urlPatterns = { UrlConstants.URL_USER_LIST, UrlConstants.URL_USER_ADD,
+		UrlConstants.URL_USER_EDIT, UrlConstants.URL_USER_DELETE })
+public class UserController extends HttpServlet {
+
+	/**
+	 * @author Hoàng Hảis
+	 */
+	private static final long serialVersionUID = 1L;
+	private UserService userService;
+
+	@Override
+	public void init() throws ServletException {
+
+		userService = new UserServiceImpl();
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String path = req.getServletPath();
+		List<UserEntity> users = userService.findAll();
+		List<RoleEntity> roles = userService.findAllRole();
+		switch (path) {
+		case UrlConstants.URL_LIST_NEWS:
+			List<UserDto> userList = userService.findAllByJoin();
+			req.setAttribute("users", userList);
+			req.getRequestDispatcher("/views/admin/news/list.jsp").forward(req, resp);
+			break;
+		case UrlConstants.URL_NEWS_EDIT:
+			long id = Long.parseLong(req.getParameter("id"));
+			UserEntity userEntity = userService.findOne(id);
+			req.setAttribute("user", userEntity);
+			req.setAttribute("roles", roles);
+			req.getRequestDispatcher("/views/admin/news/list-edit.jsp").forward(req, resp);
+			break;
+		case UrlConstants.URL_NEWS_ADD:
+			req.setAttribute("categories", categories);
+			req.getRequestDispatcher("/views/admin/news/add.jsp").forward(req, resp);
+			break;
+		case UrlConstants.URL_NEWS_DELETE:
+			long idDelete = Long.parseLong(req.getParameter("id"));
+			newsServices.delete(idDelete);
+			req.getRequestDispatcher("/views/admin/news/add.jsp").forward(req, resp);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String path = req.getServletPath();
+		String title = req.getParameter("title");
+		String thumbnail = req.getParameter("thumbnail");
+		String shortdescription = req.getParameter("shortdescription");
+		String content = req.getParameter("content");
+		long categoryId = Long.parseLong(req.getParameter("categoryId"));
+		switch (path) {
+		case UrlConstants.URL_NEWS_ADD:
+			NewEntity newEntity = new NewEntity();
+			newEntity.setTitle(title);
+			newEntity.setThumbnail(thumbnail);
+			newEntity.setContent(content);
+			newEntity.setCategoryId(categoryId);
+			newEntity.setShortDescription(shortdescription);
+			int result = newsServices.save(newEntity);
+			if (result != -1) {
+				System.out.println("Insert successfully");
+			}
+			resp.sendRedirect(req.getContextPath() + UrlConstants.URL_LIST_NEWS);
+			break;
+		case UrlConstants.URL_NEWS_EDIT:
+			long id = Long.parseLong(req.getParameter("id"));
+			NewEntity newsEdit = newsServices.findOne(id);
+			newsEdit.setCreatedDate(newsEdit.getCreatedDate());
+			newsEdit.setCreatedBy(newsEdit.getCreatedBy());
+			newsEdit.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+			newsEdit.setTitle(title);
+			newsEdit.setThumbnail(thumbnail);
+			newsEdit.setContent(content);
+			newsEdit.setCategoryId(categoryId);
+			newsEdit.setShortDescription(shortdescription);
+			int resultSave = newsServices.update(newsEdit);
+			if (resultSave != -1) {
+				System.out.println("Update successfully");
+			}
+			resp.sendRedirect(req.getContextPath() + UrlConstants.URL_LIST_NEWS);
+			break;
+		default:
+			break;
+		}
+
+	}
+
+}

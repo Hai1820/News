@@ -1,0 +1,69 @@
+package com.myclass.service.impl;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import com.myclass.dto.NewsDto;
+import com.myclass.entity.NewEntity;
+import com.myclass.repository.NewsRepository;
+import com.myclass.repository.impl.NewRepositoryImpl;
+import com.myclass.service.NewsServices;
+
+public class NewsServiceImpl implements NewsServices {
+	private NewsRepository newsRepository = null;
+
+	public NewsServiceImpl() {
+		newsRepository = new NewRepositoryImpl();
+	}
+
+	@Override
+	public List<NewsDto> findAllByJoin() {
+
+		return newsRepository.getAllByJoin();
+	}
+
+	@Override
+	public NewEntity save(NewEntity entity) {
+		entity.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+		int newId = newsRepository.insert(entity);
+		return newsRepository.findById(newId);
+	}
+
+	@Override
+	public NewEntity update(NewEntity entity) {
+		NewEntity oldNews = newsRepository.findById(entity.getId());
+		entity.setCreatedDate(oldNews.getCreatedDate());
+		entity.setCreatedBy(oldNews.getCreatedBy());
+		entity.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+		newsRepository.update(entity);
+		// TODO Auto-generated method stub
+		return newsRepository.findById(entity.getId());
+	}
+
+	@Override
+	public void delete(long[] ids) {
+		// TODO Auto-generated method stub
+		for(long id: ids) {
+			newsRepository.delete(id);
+		}
+
+	}
+
+	@Override
+	public List<NewEntity> findAll() {
+		return newsRepository.findAll();
+	}
+
+	@Override
+	public NewEntity findOne(long id) {
+		NewEntity newEntity = newsRepository.findById(id);
+		return newEntity;
+	}
+
+	@Override
+	public List<NewEntity> findByCategoryId(Long categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

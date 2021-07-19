@@ -1,0 +1,15 @@
+package com.myclass.service.impl;
+
+import java.util.List;
+
+import com.myclass.dto.NewsDto;
+import com.myclass.entity.NewEntity;
+import com.myclass.service.CategoryService;
+
+public class CategoryServiceImpl  {
+	
+
+	
+	
+
+}

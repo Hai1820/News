@@ -1,0 +1,6 @@
+package com.myclass.repository.impl;
+
+public class CategoryRepositoryImpl  {
+
+	
+}

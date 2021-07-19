@@ -1,0 +1,18 @@
+package com.myclass.service;
+
+import java.util.List;
+
+import com.myclass.entity.CategoryEntity;
+import com.myclass.repository.CategoryRepository;
+
+public class CategoryService {
+	private CategoryRepository categoryRepository = null;
+	public CategoryService() {
+		categoryRepository = new CategoryRepository();
+	}
+	public List<CategoryEntity> findAll(){
+		List<CategoryEntity> categories= categoryRepository.findAll();
+		return categories;
+	}
+	
+}

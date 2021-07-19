@@ -1,0 +1,23 @@
+content_assist_disabled_computers=org.eclipse.jdt.ui.textProposalCategory\u0000org.eclipse.jdt.ui.javaPostfixProposalCategory\u0000org.eclipse.jdt.ui.javaAllProposalCategory\u0000org.eclipse.jdt.ui.javaTypeProposalCategory\u0000org.eclipse.jdt.ui.javaNoTypeProposalCategory\u0000org.eclipse.jdt.ui.javaChainProposalCategory\u0000
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.myclass.entity.UserEntity"><rhs name\="com.myclass.entity.UserEntity"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.ArrayList"/><rhs name\="java.sql.SQLException"/><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.lang.Exception"><rhs name\="java.sql.SQLException"/></lhs><lhs name\="java.lang.Throwable"><rhs name\="java.sql.SQLException"/></lhs><lhs name\="java.sql.SQLException"><rhs name\="java.sql.SQLException"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.ArrayList"/><rhs name\="java.util.LinkedList"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.ArrayList"/><rhs name\="java.util.LinkedList"/></lhs><lhs name\="com.myclass.entity.AbstractEntity"><rhs name\="com.myclass.entity.NewEntity"/><rhs name\="com.myclass.entity.CategoryEntity"/><rhs name\="com.myclass.entity.UserEntity"/><rhs name\="com.myclass.entity.RoleEntity"/></lhs><lhs name\="com.myclass.entity.RoleEntity"><rhs name\="com.myclass.entity.RoleEntity"/></lhs><lhs name\="com.myclass.entity.CategoryEntity"><rhs name\="com.myclass.entity.CategoryEntity"/></lhs><lhs name\="com.myclass.repository.CategoryRepository"><rhs name\="com.myclass.repository.CategoryRepository"/><rhs name\="com.myclass.repository.impl.CategoryRepositoryImpl"/></lhs><lhs name\="com.myclass.service.CategoryService"><rhs name\="com.myclass.service.CategoryService"/><rhs name\="com.myclass.service.impl.CategoryServiceImpl"/></lhs><lhs name\="com.myclass.repository.NewsRepository"><rhs name\="com.myclass.repository.NewsRepository"/><rhs name\="com.myclass.repository.impl.NewRepositoryImpl"/></lhs><lhs name\="com.myclass.entity.NewEntity"><rhs name\="com.myclass.entity.NewEntity"/></lhs><lhs name\="com.myclass.dto.AbstractDto"><rhs name\="com.myclass.dto.NewsDto"/><rhs name\="com.myclass.dto.UserDto"/></lhs><lhs name\="com.myclass.dto.NewsDto"><rhs name\="com.myclass.dto.NewsDto"/></lhs><lhs name\="com.myclass.mapper.RowMapper"><rhs name\="com.myclass.mapper.NewsMapper"/><rhs name\="com.myclass.mapper.CategoryMapper"/></lhs><lhs name\="java.lang.CharSequence"><rhs name\="java.lang.StringBuilder"/></lhs><lhs name\="java.lang.AbstractStringBuilder"><rhs name\="java.lang.StringBuilder"/></lhs><lhs name\="java.lang.Appendable"><rhs name\="java.lang.StringBuilder"/></lhs><lhs name\="com.myclass.repository.GenericRepository"><rhs name\="com.myclass.repository.impl.NewRepositoryImpl"/><rhs name\="com.myclass.repository.impl.CategoryRepositoryImpl"/><rhs name\="com.myclass.repository.impl.UserRepositoryImpl"/></lhs><lhs name\="java.util.Date"><rhs name\="java.sql.Timestamp"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.sql.Timestamp"/></lhs><lhs name\="java.sql.Timestamp"><rhs name\="java.sql.Timestamp"/></lhs><lhs name\="com.myclass.service.NewsServices"><rhs name\="com.myclass.service.impl.NewsServiceImpl"/></lhs><lhs name\="com.myclass.repository.UserRepository"><rhs name\="com.myclass.repository.impl.UserRepositoryImpl"/></lhs><lhs name\="com.myclass.service.UserService"><rhs name\="com.myclass.service.impl.UserServiceImpl"/></lhs><lhs name\="java.lang.constant.Constable"><rhs name\="java.lang.Long"/></lhs><lhs name\="java.lang.constant.ConstantDesc"><rhs name\="java.lang.Long"/></lhs><lhs name\="java.lang.Number"><rhs name\="java.lang.Long"/></lhs><lhs name\="com.myclass.dto.UserDto"><rhs name\="com.myclass.dto.UserDto"/></lhs><lhs name\="com.myclass.utils.SessionUtils"><rhs name\="com.myclass.utils.SessionUtils"/></lhs></history>
+content_assist_number_of_computers=20
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.formatterprofiles.version=21
+spelling_ignore_ampersand_in_properties=true
+spelling_ignore_digits=true
+spelling_ignore_java_strings=true
+spelling_ignore_mixed=true
+spelling_ignore_non_letters=true
+spelling_ignore_sentence=true
+spelling_ignore_single_letters=true
+spelling_ignore_upper=true
+spelling_ignore_urls=true
+spelling_locale=en_GB
+spelling_locale_initialized=true
+spelling_user_dictionary_encoding=
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

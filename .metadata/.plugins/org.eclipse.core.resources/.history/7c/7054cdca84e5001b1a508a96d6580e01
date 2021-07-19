@@ -1,0 +1,18 @@
+package com.myclass.repository.impl;
+
+import java.util.List;
+
+import com.myclass.entity.CategoryEntity;
+import com.myclass.mapper.CategoryMapper;
+import com.myclass.repository.AbstractRepository;
+import com.myclass.repository.CategoryRepository;
+
+public class CategoryRepositoryImpl  {
+
+	@Override
+	public List<CategoryEntity> findAll() {
+		String sql = "select * from category";
+		return query(sql, new CategoryMapper());
+	}
+
+}

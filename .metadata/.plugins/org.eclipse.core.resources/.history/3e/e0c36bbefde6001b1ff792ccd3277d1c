@@ -1,0 +1,11 @@
+package com.myclass.controller.admin;
+
+import javax.servlet.annotation.WebServlet;
+
+import com.myclass.constant.UrlConstants;
+
+@WebServlet(name = "user", urlPatterns = { UrlConstants.URL_USER_LIST, UrlConstants.URL_USER_ADD,
+		UrlConstants.URL_USER_EDIT, UrlConstants.URL_USER_DELETE })
+public class UserController {
+
+}

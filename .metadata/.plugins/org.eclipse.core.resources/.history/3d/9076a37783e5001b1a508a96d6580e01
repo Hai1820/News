@@ -1,0 +1,30 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>Servlet-Basic</display-name>
+
+
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<session-config>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<Context path="/JavaServletWeld">
+
+		<Resource name="BeanManager" auth="Container"
+			type="javax.enterprise.inject.spi.BeanManager"
+			factory="org.jboss.weld.resources.ManagerObjectFactory" />
+
+	</Context>
+</web-app>

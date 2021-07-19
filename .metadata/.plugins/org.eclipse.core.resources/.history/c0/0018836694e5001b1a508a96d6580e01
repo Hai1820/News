@@ -1,0 +1,11 @@
+package com.myclass.repository;
+
+import java.util.List;
+
+public interface GenericRepository<T> {
+	public List<T> findAll();
+	void update ();
+	Long insert ();
+	void delete(long id);
+	int count();
+}

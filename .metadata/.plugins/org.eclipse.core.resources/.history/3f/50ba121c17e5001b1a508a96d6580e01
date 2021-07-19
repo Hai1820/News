@@ -1,0 +1,33 @@
+package com.myclass.controller.admin;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.myclass.dbconnection.MysqlConnection;
+import com.myclass.entity.CategoryEntity;
+
+
+public class CategoryController {
+	public List<CategoryEntity> findAll(){
+		List<CategoryEntity> categories = new ArrayList<CategoryEntity>();
+		String query = "Select id, name, code from category ";
+		try {
+			Connection connection = MysqlConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				CategoryEntity category = new CategoryEntity();
+				category.setId(result.getLong("id"));
+				category.setName(result.getString("name"));
+				category.setCode(result.getString("code"));
+				categories.add(category);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return categories;
+	}
+}

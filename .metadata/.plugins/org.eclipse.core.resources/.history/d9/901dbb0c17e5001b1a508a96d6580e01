@@ -1,0 +1,5 @@
+package com.myclass.service;
+
+public class CategoryService {
+
+}

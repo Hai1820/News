@@ -1,0 +1,14 @@
+package com.myclass.utils;
+
+public class SessionUtils {
+	public void putValue() {
+		
+	}
+	public Object getValue() {
+		return null;
+		
+	}
+	public void removeValue() {
+		
+	}
+}

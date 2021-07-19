@@ -1,0 +1,5 @@
+package com.myclass.filter;
+
+public class AuthenticationFilter {
+
+}

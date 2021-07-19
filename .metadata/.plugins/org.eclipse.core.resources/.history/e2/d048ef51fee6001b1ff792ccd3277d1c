@@ -1,0 +1,40 @@
+package com.myclass.repository.impl;
+
+import java.util.List;
+
+import com.myclass.entity.UserEntity;
+import com.myclass.repository.UserRepository;
+
+public class UserRepositoryImpl implements UserRepository{
+
+	@Override
+	public List<UserEntity> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int update(UserEntity t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insert(UserEntity t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void delete(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public UserEntity findById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

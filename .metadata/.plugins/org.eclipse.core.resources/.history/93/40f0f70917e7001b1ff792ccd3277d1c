@@ -1,0 +1,65 @@
+<%@page import="com.myclass.dto.UserDto"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Thông tin người dùng</title>
+</head>
+<body>
+	<!-- Begin Page Content -->
+	<div class="row bg-title">
+		<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+			<h4 class="page-title">Danh sách tin tức</h4>
+		</div>
+		<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
+			<a href="<c:url value ="/admin/news/add"/>"
+				class="btn btn-sm btn-success">Thêm mới</a>
+		</div>
+		<!-- /.col-lg-12 -->
+	</div>
+	<div class="row">
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">STT</th>
+						<th scope="col">Họ và Tên</th>
+						<th scope="col">Tên người dùng</th>
+						<th scope="col">Quyền</th>
+						<th scope="col">#</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					List<UserDto> users = (List<UserDto>) request.getAttribute("users");
+					%>
+					<%
+					for (UserDto dto : users) {
+					%>
+					<tr>
+						<th><%=dto.getId()%></th>
+						<td><%=dto.getFullName()%></td>
+						<td><%=dto.getUserName()%></td>
+						<td><%=dto.getRoleName()%></td>
+						<td><a
+							href='<%=request.getContextPath()%>/admin/user/edit?id=<%=dto.getId()%>'
+							class="btn btn-sm btn-primary">Sửa</a> <a
+							href="<%=request.getContextPath()%>/admin/user/delete?=<%=dto.getId()%>"
+							class="btn btn-sm btn-danger">Xóa</a></td>
+					</tr>
+					<%
+					}
+					%>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- /.container-fluid -->
+
+</body>
+</html>

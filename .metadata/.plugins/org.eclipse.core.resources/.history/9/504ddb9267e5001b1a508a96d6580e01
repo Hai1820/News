@@ -1,0 +1,5 @@
+package com.myclass.mapper;
+
+public class NewsMapper {
+
+}

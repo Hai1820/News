@@ -1,0 +1,7 @@
+package com.myclass.dto;
+
+import com.myclass.entity.UserEntity;
+
+public class UserDto extends AbstractDto<UserEntity> {
+
+}

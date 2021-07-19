@@ -1,0 +1,77 @@
+package com.myclass.repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.myclass.dbconnection.MysqlConnection;
+import com.myclass.dto.NewsDto;
+import com.myclass.entity.NewEntity;
+
+
+public class NewsRepository {
+	public List<NewEntity> findAll(){
+		NewEntity news = new NewEntity();
+		List<NewEntity> newsList = new LinkedList<NewEntity>();
+		String query = "select * from news ";
+		try {
+			Connection connection = MysqlConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				news.setId(result.getLong("id"));
+				news.setTitle(result.getString("title"));
+				news.setShortDescription(result.getString("shortdescription"));
+				newsList.add(news);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return newsList;
+	}
+	public List<NewsDto> findAllByJoin() {
+		NewsDto news = new NewsDto();
+		List<NewsDto> newsDtos = new LinkedList<NewsDto>(); 
+		String query = "select * from news n join category c on n.categoryid = c.id ";
+		try {
+			Connection connection = MysqlConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				news.setCategoryName(result.getString("name"));
+				news.setId(result.getLong("id"));
+				news.setTitle(result.getString("title"));
+				news.setShortDescription(result.getString("shortdescription"));
+				news.setContent(result.getString("content"));
+				newsDtos.add(news);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return newsDtos;
+	}
+	public NewsDto findOne(long id) {
+		NewsDto news = new NewsDto();
+		String query = "select n.id, n.title, n.shortdescription, n.content, c.name from news n join category c on n.categoryid= c.id where n.id = ?";
+		try {
+		
+			Connection connection = MysqlConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(query);
+			statement.setLong(1, id);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				news.setCategoryName(result.getString("name"));
+				news.setId(result.getLong("id"));
+				news.setTitle(result.getString("title"));
+				news.setShortDescription("shortdescription");
+				news.setContent(result.getString("content"));
+				return news;
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return null;
+	}
+}

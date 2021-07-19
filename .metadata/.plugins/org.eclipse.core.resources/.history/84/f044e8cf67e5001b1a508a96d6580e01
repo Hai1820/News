@@ -1,0 +1,33 @@
+package com.myclass.mapper;
+
+import com.myclass.entity.NewEntity;
+import com.mysql.cj.xdevapi.Result;
+
+public class NewsMapper implements RowMapper<NewEntity> {
+
+	@Override
+	public NewEntity mapRow(Result result) {
+		try {
+			NewEntity newsEntity = new NewEntity();
+			news.setId(resultSet.getLong("id"));
+			news.setTitle(resultSet.getString("title"));
+			news.setContent(resultSet.getString("content"));
+			news.setCategoryId(resultSet.getLong("categoryid"));
+			news.setThumbnail(resultSet.getString("thumbnail"));
+			news.setShortDescription(resultSet.getString("shortdescription"));
+			news.setCreatedDate(resultSet.getTimestamp("createddate"));
+			news.setCreatedBy(resultSet.getString("createdby"));
+			if (resultSet.getTimestamp("modifieddate") != null) {
+				news.setModifiedDate(resultSet.getTimestamp("modifieddate"));
+			}
+			if (resultSet.getString("modifiedby") != null) {
+				news.setModifiedBy(resultSet.getString("modifiedby"));
+			}
+			return news;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+}

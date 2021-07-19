@@ -1,0 +1,17 @@
+package com.myclass.service.impl;
+
+import java.util.List;
+
+import com.myclass.entity.CategoryEntity;
+import com.myclass.service.CategoryService;
+
+public class CategoryServiceImpl implements CategoryService  {
+	private CategoryService categoryService = null;
+	
+	@Override
+	public List<CategoryEntity> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

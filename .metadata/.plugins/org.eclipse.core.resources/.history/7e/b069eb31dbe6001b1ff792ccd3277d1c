@@ -1,0 +1,44 @@
+package com.myclass.controller.admin;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.myclass.constant.UrlConstants;
+import com.myclass.service.CategoryService;
+import com.myclass.service.impl.CategoryServiceImpl;
+
+@WebServlet(name = "category", urlPatterns = { UrlConstants.URL_CATEGORY_LIST })
+public class CategoryController extends HttpServlet {
+
+	/**
+	 * @author Hoàng Hải
+	 */
+	private static final long serialVersionUID = 1L;
+	private CategoryService categoryService;
+
+	@Override
+	public void init() throws ServletException {
+		categoryService = new CategoryServiceImpl();
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String path = req.getServletPath();
+		switch (path) {
+		case UrlConstants.URL_CATEGORY_LIST:
+			req.setAttribute("categories", categoryService.findAll());
+			req.getRequestDispatcher("/views/admin/category/list.jsp").forward(req, resp);
+			break;
+		case UrlConstants.URL_CATEGORY_ADD:
+			req.set
+		default:
+			break;
+		}
+	}
+
+}

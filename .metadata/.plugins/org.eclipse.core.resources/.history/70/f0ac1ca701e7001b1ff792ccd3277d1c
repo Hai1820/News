@@ -1,0 +1,106 @@
+package com.myclass.repository.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.myclass.dbconnection.MysqlConnection;
+import com.myclass.dto.UserDto;
+import com.myclass.entity.UserEntity;
+import com.myclass.repository.UserRepository;
+
+public class UserRepositoryImpl implements UserRepository {
+
+	@Override
+	public List<UserEntity> findAll() {
+		Connection connection = MysqlConnection.getConnection();
+		List<UserEntity> dtos = new LinkedList<UserEntity>();
+		try {
+			String query = "Select * from user";
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				UserEntity userDto = new UserEntity();
+				userDto.setId(resultSet.getLong("id"));
+				userDto.setUserName(resultSet.getString("username"));
+				userDto.setFullName(resultSet.getString("fullname"));
+				userDto.setRoleId(resultSet.getLong("id"));
+				dtos.add(userDto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dtos;
+	}
+
+	@Override
+	public int update(UserEntity t) {
+		StringBuilder sql = new StringBuilder("UPDATE user SET name = ?, username = ?,");
+		sql.append(" fullname = ?, password = ?, roleid = ?,");
+
+		Connection connection = MysqlConnection.getConnection();
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql.toString());
+			statement.setString(1, newEntity.getTitle());
+			statement.setString(2, newEntity.getContent());
+			statement.setString(3, newEntity.getThumbnail());
+			statement.setString(4, newEntity.getShortDescription());
+			statement.setLong(5, newEntity.getCategoryId());
+			statement.setTimestamp(6, newEntity.getCreatedDate());
+			statement.setString(7, newEntity.getCreatedBy());
+			statement.setTimestamp(8, newEntity.getModifiedDate());
+			statement.setString(9, newEntity.getModifiedBy());
+			statement.setLong(10, newEntity.getId());
+			return statement.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+
+	}
+
+	@Override
+	public int insert(UserEntity t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void delete(long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public UserEntity findById(long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UserDto> findAllUser() {
+		Connection connection = MysqlConnection.getConnection();
+		List<UserDto> dtos = new LinkedList<UserDto>();
+		try {
+			String query = "Select u.id,u.username, u.fullname, r.name from user u join role r on u.roleid = r.id ";
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				UserDto userDto = new UserDto();
+				userDto.setId(resultSet.getLong("id"));
+				userDto.setUserName(resultSet.getString("username"));
+				userDto.setFullName(resultSet.getString("fullname"));
+				userDto.setRoleName(resultSet.getString("name"));
+				dtos.add(userDto);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dtos;
+	}
+
+}

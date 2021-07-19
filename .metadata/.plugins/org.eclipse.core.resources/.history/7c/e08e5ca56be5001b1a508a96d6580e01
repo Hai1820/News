@@ -1,0 +1,138 @@
+package com.myclass.repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Timestamp;
+import com.myclass.dbconnection.MysqlConnection;
+import com.myclass.mapper.RowMapper;
+
+public class AbstractRepository<T> implements GenericRepository<T> {
+
+	@Override
+	public List<T> query(String sql, RowMapper<T> rowMapper, Object... parameters) {
+		List<T> results = new ArrayList<>();
+		Connection connection = MysqlConnection.getConnection();
+		try {
+
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				results.add(rowMapper.mapRow(result));
+			}
+			return results;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		} finally {
+			try {
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				// TODO: handle exception
+				return null;
+			}
+		}
+	}
+
+	@Override
+	public void update(String sql, Object... parameters) {
+		Connection connection = MysqlConnection.getConnection();
+		// TODO Auto-generated method stub
+		try {
+
+			connection.setAutoCommit(false);
+			PreparedStatement statement = connection.prepareStatement(sql);
+			setParameter(statement, parameters);
+			statement.executeUpdate();
+			connection.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+			if (connection != null) {
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}finally {
+			try {
+				if(connection!=null) {
+					connection.close();
+				}
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	@Override
+	public Long insert(String sql, Object... parameters) {
+		Connection connection = MysqlConnection.getConnection();
+		try {
+			Long id = null;
+			connection.setAutoCommit(false);
+			PreparedStatement statement = connection.prepareStatement(sql);
+			setParameter(statement, parameters);
+			statement.executeUpdate();
+			ResultSet result= statement.getGeneratedKeys();
+			if(result.next()) {
+				id = result.getLong(1);
+			}
+			connection.commit();
+			return id;
+		} catch (Exception e) {
+			if(connection!= null) {
+				try {
+					connection.rollback();
+				} catch (SQLException e1) {
+					// TODO: handle exception
+					e1.printStackTrace();
+				}
+			}
+		}finally {
+			try {
+				if(connection !=null) {
+					connection.close();
+				}
+			} catch (SQLException e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public int count(String sql, Object... parameters) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	private void setParameter(PreparedStatement statement, Object... parameters) {
+		try {
+			for (int i = 0; i < parameters.length; i++) {
+				Object parameter = parameters[i];
+				int index = i + 1;
+				if (parameter instanceof Long) {
+					statement.setLong(index, (Long) parameter);
+				} else if (parameter instanceof String) {
+					statement.setString(index, (String) parameter);
+				} else if (parameter instanceof Integer) {
+					statement.setInt(index, (Integer) parameter);
+				} else if (parameter instanceof Timestamp) {
+					statement.setTimestamp(index, (Timestamp) parameter);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

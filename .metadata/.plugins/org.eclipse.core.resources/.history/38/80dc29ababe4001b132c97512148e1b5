@@ -1,0 +1,29 @@
+package com.myclass.repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
+import com.myclass.dbconnection.MysqlConnection;
+import com.myclass.entity.NewEntity;
+
+
+public class NewsRepository {
+	public List<NewEntity> findAll(){
+		NewEntity news = new NewEntity();
+		String query = "select * from news ";
+		try {
+			Connection connection = MysqlConnection.getConnection();
+			PreparedStatement statement = connection.prepareStatement(query);
+			ResultSet result = statement.executeQuery();
+			while(result.next()) {
+				news.setTitle(result.getString("title"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
+	}
+}

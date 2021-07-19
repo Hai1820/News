@@ -1,0 +1,15 @@
+package com.myclass.mapper;
+
+import java.sql.ResultSet;
+
+import com.myclass.entity.CategoryEntity;
+
+public class CategoryMapper implements RowMapper<CategoryEntity> {
+
+	@Override
+	public CategoryEntity mapRow(ResultSet result) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

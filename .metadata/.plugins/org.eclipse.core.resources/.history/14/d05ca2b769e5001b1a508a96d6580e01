@@ -1,0 +1,57 @@
+package com.myclass.repository;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.myclass.dbconnection.MysqlConnection;
+import com.myclass.mapper.RowMapper;
+
+public class AbstractRepository<T> implements GenericRepository<T> {
+
+	@Override
+	public List<T> query(String sql,RowMapper<T> rowMapper, Object... parameters) {
+		List<T> results = new ArrayList<>();
+		Connection connection = MysqlConnection.getConnection();
+		try {
+			
+			PreparedStatement statement = connection.prepareStatement(sql);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				results.add(rowMapper.mapRow(result));
+			}
+			return results;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null
+		}finally {
+			try {
+				if()
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public void update(String sql, Object... parameters) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public Long insert(String sql, Object... parameters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int count(String sql, Object... parameters) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

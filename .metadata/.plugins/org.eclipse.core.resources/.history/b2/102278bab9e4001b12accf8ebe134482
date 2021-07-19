@@ -1,0 +1,16 @@
+package com.myclass.service;
+
+import java.util.List;
+
+import com.myclass.entity.NewEntity;
+import com.myclass.repository.NewsRepository;
+
+public class NewsServices {
+	private NewsRepository newsRepository = null; 
+	public NewsServices(){
+		newsRepository = new NewsRepository();
+	}
+	public List<NewEntity> findAll(){
+		return newsRepository.findAll();
+	}
+}

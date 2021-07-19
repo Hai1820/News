@@ -1,0 +1,10 @@
+package com.myclass.repository;
+
+import java.util.List;
+
+import com.myclass.entity.CategoryEntity;
+
+public interface CategoryRepository extends GenericRepository<CategoryEntity> {
+
+	public List<CategoryEntity> findAll();
+}

@@ -1,0 +1,8 @@
+package com.myclass.mapper;
+
+import com.mysql.cj.xdevapi.Result;
+
+public interface RowMapper<T> {
+	T mapRow(Result result)
+
+}

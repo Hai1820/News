@@ -1,0 +1,11 @@
+package com.myclass.constant;
+
+public class UrlConstants {
+//	news url constant
+	public static final String URL_LIST_NEWS = "/admin/news/list";
+	public static final String URL_NEWS_EDIT = "/admin/news/edit";
+	public static final String URL_NEWS_ADD = "/admin/news/add";
+	public static final String URL_NEWS_DELETE = "/admin/news/delete";
+//	category url constant
+	public static final String URL_CATEGORY_LIST = "/admin/category/list";
+}
